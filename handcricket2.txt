@@ -1,0 +1,77 @@
+import random
+
+def user_batting():
+    user_score = 0
+    print("\nYou are batting now. Choose a number between 1 and 10.")
+    
+    while True:
+        try:
+            user_choice = int(input("Enter your run (1-10): "))
+            if user_choice < 1 or user_choice > 10:
+                print("Invalid input. Please choose a number between 1 and 10.")
+                continue
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 10.")
+            continue
+        
+        computer_choice = random.randint(1, 10)
+        print(f"Computer chose: {computer_choice}")
+
+        if user_choice == computer_choice:
+            print("You're out!")
+            break
+        else:
+            user_score += user_choice
+            print(f"Your score: {user_score}")
+    
+    print(f"\nEnd of your innings. Your final score is {user_score}")
+    return user_score
+
+def computer_batting(target):
+    computer_score = 0
+    print("\nYou are bowling now. Choose a number between 1 and 10. If you choose the same number as the computer, the computer is out!")
+
+    while computer_score < target:
+        try:
+            user_choice = int(input("Enter your number (1-10): "))
+            if user_choice < 1 or user_choice > 10:
+                print("Invalid input. Please choose a number between 1 and 10.")
+                continue
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 10.")
+            continue
+
+        computer_choice = random.randint(1, 10)
+        print(f"Computer chose: {computer_choice}")
+
+        if user_choice == computer_choice:
+            print("Computer is out!")
+            break
+        else:
+            computer_score += computer_choice
+            print(f"Computer's score: {computer_score}")
+
+    print(f"\nEnd of computer's innings. Computer's final score is {computer_score}")
+    return computer_score
+
+def hand_cricket():
+    print("Welcome to Hand Cricket!")
+
+    
+    user_score = user_batting()
+    target = user_score + 1
+    print(f"\nYour target for the computer is {target} runs.")
+
+    
+    computer_score = computer_batting(target)
+
+    
+    if user_score > computer_score:
+        print("\nCongratulations! You win!")
+    elif user_score < computer_score:
+        print("\nComputer wins! Better luck next time!")
+    else:
+        print("\nIt's a tie!")
+
+if __name__ == "__main__":
+    hand_cricket()
