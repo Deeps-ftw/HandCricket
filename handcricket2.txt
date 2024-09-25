@@ -1,4 +1,4 @@
-#hello you
+#hello world
 import random
 
 def user_batting():
